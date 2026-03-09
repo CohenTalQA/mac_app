@@ -4,8 +4,9 @@ from pathlib import Path
 
 from pages.enter_login_page import EnterLoginPage
 from pages.appointment_page import AppointmentPage
+from pages.my_appointment_page import MyAppointmentPage
 from utils.driver_factory import create_driver
-from utils.popup_handler import close_popups_if_exist
+from utils.popup_handler import close_popups_if_exist,second_option_popup_if_exist
 from utils.otp_service import OtpService
 
 def load_config():
@@ -21,6 +22,7 @@ def test_login():
     driver = create_driver()
     login_page = EnterLoginPage(driver)
     appointment_page = AppointmentPage(driver)
+    my_appointment_page = MyAppointmentPage(driver)
     otp_service = OtpService(driver)
     current_date = datetime.today()
     # date format is dd/mm/yyyy
@@ -33,6 +35,7 @@ def test_login():
     month = months[month - 1]
     year = current_date.year
     try:
+        # login flow
         # login_page.click_login()
         # login_page.enter_id(user["id"])
         # login_page.open_birth_picker()
@@ -44,8 +47,8 @@ def test_login():
         # otp = otp_service.wait_for_otp()
         # otp_service.enter_otp(otp)
         # close_popups_if_exist(driver,3)
+        # new appointment flow
         # appointment_page.enter_appointment_page()
-        # appointment_page.open_new_appointment()
         # appointment_page.dent_test_appointment()
         # appointment_page.regular_appointment()
         # appointment_page.choose_city()
@@ -55,6 +58,17 @@ def test_login():
         # appointment_page.select_first_available_time()
         # appointment_page.confirm_appointment()
         # appointment_page.finish_appointment()
+        # edit appointment flow
+        # my_appointment_page.open_appointment_page()
+        # my_appointment_page.select_appointment_type()
+        # my_appointment_page.edit_appointment_type()
+        # # second_option_popup_if_exist(driver)
+        # appointment_page.select_first_available_time()
+        # appointment_page.confirm_appointment()
+        appointment_page.finish_appointment()
+        #cancel appointment flow
+        # my_appointment_page.select_appointment_type()
+
 
     finally:
         driver.quit()
