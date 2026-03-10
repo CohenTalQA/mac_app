@@ -47,7 +47,7 @@ def test_app():
             login_flow(login_page, otp_service, user, month, day, driver)
 
         if flows["create_appointment"]:
-            create_appointment_flow(appointment_page)
+            create_appointment_flow(appointment_page,driver)
 
         if flows["edit_appointment"]:
             edit_appointment_flow(my_appointment_page, appointment_page, driver)
@@ -55,44 +55,5 @@ def test_app():
         if flows["cancel_appointment"]:
             cancel_appointment_flow(my_appointment_page, appointment_page, driver)
 
-        # login flow
-        # login_page.click_login()
-        # login_page.enter_id(user["id"])
-        # login_page.open_birth_picker()
-        # login_page.pick_birth_year("2010",user["year"]) # think how to fix this hardcoded year, maybe add it to the config file
-        # login_page.pick_birth_month(str(month),user["month"])
-        # login_page.pick_birth_day(str(day),user["day"])
-        # login_page.confirm_birth_date()
-        # login_page.click_send_code()
-        # otp = otp_service.wait_for_otp()
-        # otp_service.enter_otp(otp)
-        # close_popups_if_exist(driver,3)
-        # new appointment flow
-        # appointment_page.enter_appointment_page()
-        # appointment_page.dent_test_appointment()
-        # appointment_page.regular_appointment()
-        # appointment_page.choose_city()
-        # appointment_page.select_city()
-        # appointment_page.select_clinic()
-        # appointment_page.choose_doctor()
-        # appointment_page.select_first_available_time()
-        # appointment_page.confirm_appointment()
-        # appointment_page.finish_appointment()
-        # # edit appointment flow
-        # my_appointment_page.open_my_appointment_page()
-        # my_appointment_page.select_my_appointment()
-        # my_appointment_page.edit_my_appointment()
-        # second_option_popup_if_exist(driver)
-        # appointment_page.select_first_available_time()
-        # appointment_page.confirm_appointment()
-        # appointment_page.finish_appointment()
-        #cancel appointment flow
-        # my_appointment_page.select_my_appointment()
-        # my_appointment_page.cancel_my_appointment()
-        # second_option_popup_if_exist(driver)
-        # appointment_page.select_first_available_time()
-        # appointment_page.confirm_appointment()
-        # appointment_page.finish_appointment()
-        # my_appointment_page.back_home()
     finally:
         driver.quit()
