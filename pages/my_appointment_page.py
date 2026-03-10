@@ -10,7 +10,7 @@ class MyAppointmentPage:
         self.wait = WebDriverWait(driver, 10)
 
 
-    def open_appointment_page(self):
+    def open_my_appointment_page(self):
         button = self.wait.until(
             EC.element_to_be_clickable(
                 (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("com.maccabident.maccabidentAPP:id/entrance_rounded_btn_bg").instance(2)')
@@ -18,14 +18,14 @@ class MyAppointmentPage:
         )
         button.click()
 
-    def select_appointment_type(self):
+    def select_my_appointment(self):
         button = self.wait.until(
             EC.element_to_be_clickable(
                 (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("com.maccabident.maccabidentAPP:id/line").instance(0)')
             )
         )
         button.click()
-    def edit_appointment_type(self):
+    def edit_my_appointment(self):
         button = self.wait.until(
             EC.element_to_be_clickable(
                 (AppiumBy.ID, 'com.maccabident.maccabidentAPP:id/edit_button')
@@ -33,7 +33,21 @@ class MyAppointmentPage:
         )
         button.click()
 
+    def cancel_my_appointment(self):
+        button = self.wait.until(
+            EC.element_to_be_clickable(
+                (AppiumBy.ID, 'com.maccabident.maccabidentAPP:id/cancel_button')
+            )
+        )
+        button.click()
 
+    def back_home(self):
+        button = self.wait.until(
+            EC.element_to_be_clickable(
+                (AppiumBy.ANDROID_UIAUTOMATOR,'new UiSelector().resourceId("com.maccabident.maccabidentAPP:id/maccabident_custom_button_text").text("בחזרה למסך הבית")')
+            )
+        )
+        button.click()
 
 
 

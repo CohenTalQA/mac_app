@@ -1,14 +1,14 @@
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time
+from selenium.common.exceptions import TimeoutException
+
 
 class AppointmentPage:
 
     def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(driver, 10)
-
 
     def enter_appointment_page(self):
         button = self.wait.until(
@@ -17,14 +17,7 @@ class AppointmentPage:
             )
         )
         button.click()
-    # def open_new_appointment(self):
-    #     time.sleep(2)
-    #     button = self.wait.until(
-    #         EC.element_to_be_clickable(
-    #             (AppiumBy.ID, "com.maccabident.maccabidentAPP:id/maccabident_custom_button_text")
-    #         )
-    #     )
-        button.click()
+
     def dent_test_appointment(self):
         button = self.wait.until(
             EC.element_to_be_clickable(
@@ -33,15 +26,15 @@ class AppointmentPage:
         )
         button.click()
 
-
-
     def regular_appointment(self):
         button = self.wait.until(
             EC.element_to_be_clickable(
-                (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("com.maccabident.maccabidentAPP:id/appointment_card_layout").instance(0)')
+                (AppiumBy.ANDROID_UIAUTOMATOR,
+                 'new UiSelector().resourceId("com.maccabident.maccabidentAPP:id/appointment_card_layout").instance(0)')
             )
         )
         button.click()
+
     def choose_city(self):
         clinic = self.wait.until(
             EC.element_to_be_clickable(
@@ -49,6 +42,7 @@ class AppointmentPage:
             )
         )
         clinic.click()
+
     def select_city(self):
         clinic = self.wait.until(
             EC.element_to_be_clickable(
@@ -56,18 +50,20 @@ class AppointmentPage:
             )
         )
         clinic.click()
+
     def select_clinic(self):
         clinic = self.wait.until(
-            EC.element_to_be_clickable(
-                (AppiumBy.ACCESSIBILITY_ID, "אופקים, רח' הרצל 36 ג', התור הפנוי הקרוב ביותר, בתאריך 29/03/2026,בשעה 19:45, לחץ פעמיים לבחירה, ")
+            EC.presence_of_element_located( (AppiumBy.ID,'com.maccabident.maccabidentAPP:id/appointment_texts_layout' )
             )
         )
+        print(clinic)
         clinic.click()
 
     def choose_doctor(self):
         doctor = self.wait.until(
             EC.element_to_be_clickable(
-                (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("com.maccabident.maccabidentAPP:id/allDetails").instance(0)')
+                (AppiumBy.ANDROID_UIAUTOMATOR,
+                 'new UiSelector().resourceId("com.maccabident.maccabidentAPP:id/allDetails").instance(0)')
             )
         )
         doctor.click()
@@ -90,12 +86,12 @@ class AppointmentPage:
         )
         confirm.click()
 
-    #com.maccabident.maccabidentAPP:id/maccabident_custom_button_text
+    # com.maccabident.maccabidentAPP:id/maccabident_custom_button_text
     def finish_appointment(self):
         finish = self.wait.until(
             EC.element_to_be_clickable(
-                (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("com.maccabident.maccabidentAPP:id/maccabident_custom_button_text").text("סיום")')
+                (AppiumBy.ANDROID_UIAUTOMATOR,
+                 'new UiSelector().resourceId("com.maccabident.maccabidentAPP:id/maccabident_custom_button_text").text("סיום")')
             )
         )
         finish.click()
-
