@@ -41,7 +41,7 @@ class MyAppointmentPage:
         )
         button.click()
 
-    def reutrn_home(self):
+    def back_home(self):
         button = self.wait.until(
             EC.element_to_be_clickable(
                 (AppiumBy.ANDROID_UIAUTOMATOR,'new UiSelector().resourceId("com.maccabident.maccabidentAPP:id/maccabident_custom_button_text").text("בחזרה למסך הבית")')
