@@ -18,18 +18,23 @@ def test_full_flow(driver, user, date_parts, config_data):
     appointment_page = AppointmentPage(driver)
     my_appointment_page = MyAppointmentPage(driver)
     otp_service = OtpService(driver)
+    flows = config_data["flows"]
 
-    login_flow(
-        login_page,
-        otp_service,
-        user,
-        date_parts["month"],
-        date_parts["day"],
-        driver
-    )
+    if flows["login"]:
+        login_flow(
+            login_page,
+            otp_service,
+            user,
+            date_parts["month"],
+            date_parts["day"],
+            driver
+        )
 
-    create_appointment_flow(appointment_page, driver)
+    if flows["create_appointment"]:
+        create_appointment_flow(appointment_page, driver)
 
-    edit_appointment_flow(my_appointment_page, appointment_page, driver)
+    if flows["edit_appointment"]:
+        edit_appointment_flow(my_appointment_page, appointment_page, driver)
 
-    cancel_appointment_flow(my_appointment_page, appointment_page, driver)
+    if flows["cancel_appointment"]:
+        cancel_appointment_flow(my_appointment_page, appointment_page, driver)
