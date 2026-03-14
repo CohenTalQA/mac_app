@@ -9,11 +9,13 @@ from utils.driver_factory import create_driver
 from datetime import datetime
 
 
-@pytest.fixture(scope="session")
-def driver():
-    driver = create_driver()
+@pytest.fixture
+def driver(config_data):
+    environment = config_data["environment"]
+    driver = create_driver(environment)
     yield driver
     driver.quit()
+
 
 @pytest.fixture
 def appointment_page(driver):
@@ -31,8 +33,19 @@ def login_page(driver):
 
 
 @pytest.fixture
-def config_data():
-    config_path = Path(__file__).resolve().parent / "config" / "config.json"
+def config_data(environment):
+
+    if environment == "test":
+        config_file = "config_test.json"
+
+    elif environment == "prod":
+        config_file = "config_prod.json"
+
+    else:
+        raise ValueError(f"Unknown environment: {environment}")
+
+    config_path = Path(__file__).resolve().parent / "config" / config_file
+
     with open(config_path, "r", encoding="utf-8") as file:
         return json.load(file)
 
@@ -65,3 +78,15 @@ def date_parts():
         "month": months[current_date.month - 1],
         "year": current_date.year,
     }
+
+@pytest.fixture
+def environment(request):
+    return request.config.getoption("--env")
+
+def pytest_addoption(parser):
+    parser.addoption(
+        "--env",
+        action="store",
+        default="test",
+        help="Environment to run tests against (test or prod)"
+    )

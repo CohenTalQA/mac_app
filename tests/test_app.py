@@ -17,7 +17,7 @@ def test_full_flow(driver, user, date_parts, config_data):
     login_page = EnterLoginPage(driver)
     appointment_page = AppointmentPage(driver)
     my_appointment_page = MyAppointmentPage(driver)
-    otp_service = OtpService(driver)
+    otp_service = OtpService(driver, config_data["environment"])
     flows = config_data["flows"]
 
     if flows["login"]:

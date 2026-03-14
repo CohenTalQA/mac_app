@@ -13,7 +13,7 @@ class EnterLoginPage:
     def click_login(self):
         homepage_login = self.wait.until(
             EC.presence_of_element_located(
-                (AppiumBy.ID, "com.maccabident.maccabidentAPP:id/entrance_personal_link")
+                (AppiumBy.ID, "entrance_personal_link")
             )
         )
 
@@ -111,12 +111,12 @@ class EnterLoginPage:
 
         confirm_button.click()
 
-    # com.maccabident.maccabidentAPP:id/maccabident_custom_button_text "send code button"
+    # maccabident_custom_button_text "send code button"
 
     def click_send_code(self):
         send_code_button = self.wait.until(
             EC.element_to_be_clickable(
-                (AppiumBy.ID, 'com.maccabident.maccabidentAPP:id/maccabident_custom_button_text')
+                (AppiumBy.ID, 'maccabident_custom_button_text')
             )
         )
 
@@ -161,7 +161,7 @@ class EnterLoginPage:
     # def enter_otp(self, otp):
     #     otp_input = self.wait.until(
     #         EC.presence_of_element_located(
-    #             (AppiumBy.ID, "com.maccabident.maccabidentAPP:id/login_otp_pinview")
+    #             (AppiumBy.ID, "login_otp_pinview")
     #         )
     #     )
     #

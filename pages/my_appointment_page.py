@@ -13,7 +13,7 @@ class MyAppointmentPage:
     def open_my_appointment_page(self):
         button = self.wait.until(
             EC.element_to_be_clickable(
-                (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("com.maccabident.maccabidentAPP:id/entrance_rounded_btn_bg").instance(2)')
+                (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("entrance_rounded_btn_bg").instance(2)')
             )
         )
         button.click()
@@ -21,14 +21,14 @@ class MyAppointmentPage:
     def select_my_appointment(self):
         button = self.wait.until(
             EC.element_to_be_clickable(
-                (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("com.maccabident.maccabidentAPP:id/line").instance(0)')
+                (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("line").instance(0)')
             )
         )
         button.click()
     def edit_my_appointment(self):
         button = self.wait.until(
             EC.element_to_be_clickable(
-                (AppiumBy.ID, 'com.maccabident.maccabidentAPP:id/edit_button')
+                (AppiumBy.ID, 'edit_button')
             )
         )
         button.click()
@@ -36,7 +36,7 @@ class MyAppointmentPage:
     def cancel_my_appointment(self):
         button = self.wait.until(
             EC.element_to_be_clickable(
-                (AppiumBy.ID, 'com.maccabident.maccabidentAPP:id/cancel_button')
+                (AppiumBy.ID, 'cancel_button')
             )
         )
         button.click()
@@ -44,7 +44,7 @@ class MyAppointmentPage:
     def back_home(self):
         button = self.wait.until(
             EC.element_to_be_clickable(
-                (AppiumBy.ID,'com.maccabident.maccabidentAPP:id/maccabident_custom_button_text')
+                (AppiumBy.ID,'maccabident_custom_button_text')
             )
         )
         button.click()

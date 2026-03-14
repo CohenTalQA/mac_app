@@ -11,7 +11,7 @@ def close_popups_if_exist(driver, max_attempts=5):
         try:
             close_button = WebDriverWait(driver, 5).until(
                 EC.element_to_be_clickable(
-                    (AppiumBy.ID, "com.maccabident.maccabidentAPP:id/general_popup_x_button")
+                    (AppiumBy.ID, "general_popup_x_button")
                 )
             )
 
@@ -27,7 +27,7 @@ def second_option_popup_if_exist(driver):
     try:
         second_button = WebDriverWait(driver, 3).until(
             EC.element_to_be_clickable(
-                (AppiumBy.ID, "com.maccabident.maccabidentAPP:id/general_popup_center_button")
+                (AppiumBy.ID, "general_popup_center_button")
             )
         )
         second_button.click()

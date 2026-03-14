@@ -13,7 +13,7 @@ class AppointmentPage:
     def enter_appointment_page(self):
         button = self.wait.until(
             EC.element_to_be_clickable(
-                (AppiumBy.ID, "com.maccabident.maccabidentAPP:id/entrance_index00")
+                (AppiumBy.ID, "entrance_index00")
             )
         )
         button.click()
@@ -30,7 +30,7 @@ class AppointmentPage:
         button = self.wait.until(
             EC.element_to_be_clickable(
                 (AppiumBy.ANDROID_UIAUTOMATOR,
-                 'new UiSelector().resourceId("com.maccabident.maccabidentAPP:id/appointment_card_layout").instance(0)')
+                 'new UiSelector().text("ביקור רגיל")')
             )
         )
         button.click()
@@ -38,7 +38,7 @@ class AppointmentPage:
     def choose_city(self):
         clinic = self.wait.until(
             EC.element_to_be_clickable(
-                (AppiumBy.ID, "com.maccabident.maccabidentAPP:id/chose_doctor_or_city")
+                (AppiumBy.ID, "chose_doctor_or_city")
             )
         )
         clinic.click()
@@ -53,7 +53,7 @@ class AppointmentPage:
 
     def select_clinic(self):
         clinic = self.wait.until(
-            EC.presence_of_element_located( (AppiumBy.ID,'com.maccabident.maccabidentAPP:id/appointment_texts_layout' )
+            EC.presence_of_element_located( (AppiumBy.ID,'appointment_texts_layout' )
             )
         )
         print(clinic)
@@ -63,7 +63,7 @@ class AppointmentPage:
         doctor = self.wait.until(
             EC.element_to_be_clickable(
                 (AppiumBy.ANDROID_UIAUTOMATOR,
-                 'new UiSelector().resourceId("com.maccabident.maccabidentAPP:id/allDetails").instance(0)')
+                 'new UiSelector().resourceId("allDetails").instance(0)')
             )
         )
         doctor.click()
@@ -71,7 +71,7 @@ class AppointmentPage:
     def select_first_available_time(self):
         times = self.wait.until(
             EC.presence_of_all_elements_located(
-                (AppiumBy.ID, "com.maccabident.maccabidentAPP:id/hour_option")
+                (AppiumBy.ID, "hour_option")
             )
         )
 
@@ -81,17 +81,17 @@ class AppointmentPage:
     def confirm_appointment(self):
         confirm = self.wait.until(
             EC.element_to_be_clickable(
-                (AppiumBy.ID, "com.maccabident.maccabidentAPP:id/maccabident_custom_button_text")
+                (AppiumBy.ID, "maccabident_custom_button_text")
             )
         )
         confirm.click()
 
-    # com.maccabident.maccabidentAPP:id/maccabident_custom_button_text
+    # maccabident_custom_button_text
     def finish_appointment(self):
         finish = self.wait.until(
             EC.element_to_be_clickable(
                 (AppiumBy.ANDROID_UIAUTOMATOR,
-                 'new UiSelector().resourceId("com.maccabident.maccabidentAPP:id/maccabident_custom_button_text").text("סיום")')
+                 'new UiSelector().resourceId("maccabident_custom_button_text").text("סיום")')
             )
         )
         finish.click()

@@ -3,11 +3,30 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import re
 import time
+from datetime import datetime
+
 
 class OtpService:
-    def __init__(self, driver):
+
+    def __init__(self, driver, environment):
         self.driver = driver
         self.wait = WebDriverWait(driver, 10)
+        self.environment = environment
+
+    def generate_test_otp(self):
+        return datetime.now().strftime("%d%m%y")
+
+    def get_otp(self):
+
+        if self.environment == "test":
+            return self.generate_test_otp()
+
+        elif self.environment == "prod":
+            return self.wait_for_otp()
+
+        else:
+            raise ValueError(f"Unknown environment: {self.environment}")
+
 
     def wait_for_otp(self, timeout=30, interval=2):
 
@@ -26,14 +45,15 @@ class OtpService:
                 text = notification.get("text", "")
 
                 if (
-                        package == "com.samsung.android.messaging"
-                        and post_time
-                        and post_time >= start_time
-                        and text
-                        and "סיסמה חד פעמית שלך לאפליקציית מכבידנט" in text
+                    package == "com.samsung.android.messaging"
+                    and post_time
+                    and post_time >= start_time
+                    and text
+                    and "סיסמה חד פעמית שלך לאפליקציית מכבידנט" in text
                 ):
 
                     otp_match = re.search(r"\d{6}", text)
+
                     if otp_match:
                         return otp_match.group()
 
@@ -41,12 +61,12 @@ class OtpService:
 
         raise Exception("OTP SMS not received")
 
-        raise Exception("OTP SMS not received")
 
     def enter_otp(self, otp):
+
         otp_input = self.wait.until(
             EC.presence_of_element_located(
-                (AppiumBy.ID, "com.maccabident.maccabidentAPP:id/login_otp_pinview")
+                (AppiumBy.ID, "login_otp_pinview")
             )
         )
 

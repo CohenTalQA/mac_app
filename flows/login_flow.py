@@ -14,7 +14,7 @@ def login_flow(login_page, otp_service, user, month, day, driver):
     login_page.confirm_birth_date()
     login_page.click_send_code()
 
-    otp = otp_service.wait_for_otp()
+    otp = otp_service.get_otp()
     otp_service.enter_otp(otp)
 
     close_popups_if_exist(driver, 3)
