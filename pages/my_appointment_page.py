@@ -1,7 +1,7 @@
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+from utils.locator_helper import ui_selector, id_locator
 
 class MyAppointmentPage:
 
@@ -13,15 +13,16 @@ class MyAppointmentPage:
     def open_my_appointment_page(self):
         button = self.wait.until(
             EC.element_to_be_clickable(
-                (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("entrance_rounded_btn_bg").instance(2)')
-            )
+                ui_selector(self.driver, 'entrance_rounded_btn_bg', instance=2))
         )
         button.click()
 
+
+ # new UiSelector().resourceId("line").instance(0)
     def select_my_appointment(self):
         button = self.wait.until(
             EC.element_to_be_clickable(
-                (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("line").instance(0)')
+                (ui_selector(self.driver, 'line', instance=0))
             )
         )
         button.click()

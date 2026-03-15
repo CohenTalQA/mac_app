@@ -1,7 +1,8 @@
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
+
+from utils.locator_helper import ui_selector, id_locator
 
 
 class AppointmentPage:
@@ -53,8 +54,8 @@ class AppointmentPage:
 
     def select_clinic(self):
         clinic = self.wait.until(
-            EC.presence_of_element_located( (AppiumBy.ID,'appointment_texts_layout' )
-            )
+            EC.presence_of_element_located((AppiumBy.ID, 'appointment_texts_layout')
+                                           )
         )
         print(clinic)
         clinic.click()
@@ -62,10 +63,10 @@ class AppointmentPage:
     def choose_doctor(self):
         doctor = self.wait.until(
             EC.element_to_be_clickable(
-                (AppiumBy.ANDROID_UIAUTOMATOR,
-                 'new UiSelector().resourceId("allDetails").instance(0)')
+                (ui_selector(self.driver, 'appointment_texts_layout', instance=1))
             )
         )
+        print(doctor)
         doctor.click()
 
     def select_first_available_time(self):
@@ -86,12 +87,10 @@ class AppointmentPage:
         )
         confirm.click()
 
-    # maccabident_custom_button_text
     def finish_appointment(self):
         finish = self.wait.until(
             EC.element_to_be_clickable(
-                (AppiumBy.ANDROID_UIAUTOMATOR,
-                 'new UiSelector().resourceId("maccabident_custom_button_text").text("סיום")')
+                (id_locator(self.driver, "maccabident_custom_button_text"))
             )
         )
         finish.click()
