@@ -1,15 +1,15 @@
 {
-  "environment": "test",
-  "user": {
-    "id": "200430833",
-    "day": "17",
-    "month": "נו",
-    "year": "1988"
-  },
+    "environment": "test",
+    "user": {
+        "id": "200430833",
+        "day": "17",
+        "month": "נו",
+        "year": "1988"
+    },
     "flows": {
-    "login": true,
-    "create_appointment": true,
-    "edit_appointment": true,
-    "cancel_appointment": true
-  }
+        "login": false,
+        "create_appointment": false,
+        "edit_appointment": true,
+        "cancel_appointment": true
+    }
 }

@@ -10,9 +10,21 @@ appium
 ## Run tests
 pytest
 
+ pytest --env=test         
+ pytest --env=prod
+
 ## Run tests with HTML report
 pytest --html=reports/report.html --self-contained-html
 
+ ## restore to last commit:
+
+ git reset --hard HEAD
+
+ ## Run GUI:
+python test_gui.py
+
+## freeze requirements:
+pip freeze > requirements.txt
 
 ## Requirements
 
