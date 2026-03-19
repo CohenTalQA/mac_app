@@ -1,0 +1,11 @@
+create EXE file:
+
+pyinstaller --onefile --windowed --add-data "config;config" test_gui.py
+
+
+restore to last commit:
+
+ git reset --hard HEAD
+
+ Run GUI:
+ python test_gui.py
